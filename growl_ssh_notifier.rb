@@ -34,14 +34,16 @@ module GrowlSSHNotifier
       if self.with_password?
         require 'net/ssh'
         Net::SSH.start(@host, @user, :password => @password, :timeout => @ssh_timeout) do |ssh|
-          ssh.exec remote_command(title, message)
+          result = ssh.exec! remote_command(title, message)
         end
         
       else
         if ip_local?
-          system remote_command(title, message)
+          # result = system remote_command(title, message)
+          result = `#{remote_command(title, message)}`
         else
-          system "ssh #{@host} " + '"' + remote_command(title, message) + '"'
+          # result = system "ssh #{@host} " + '"' + remote_command(title, message) + '"'
+          result = `ssh #{@host} \"#{remote_command(title, message)} \"`
         end
       end
       

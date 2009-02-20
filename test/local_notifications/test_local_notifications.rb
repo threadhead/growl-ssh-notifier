@@ -1,6 +1,6 @@
 require 'test/test_helper'
 
-class TestLocalNotifications < Test::Unit::TestCase
+class TestLocalNotification < Test::Unit::TestCase
   
   def test_remote_command_on_local_machine
     rec = GrowlSSHNotifier::Receiver.new("localhost")

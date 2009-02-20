@@ -1,7 +1,7 @@
 require 'test/test_helper'
 require 'yaml'
 
-class TestRemoteNotifications < Test::Unit::TestCase
+class TestRemoteNotification < Test::Unit::TestCase
  
   def setup
     # load the hosts from the yaml file: remote_hosts.yml
