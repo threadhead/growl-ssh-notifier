@@ -28,7 +28,6 @@ module GrowlSSHNotifier
       if self.with_password?
         require 'net/ssh'
         Net::SSH.start(@host, @user, :password => @password) do |ssh|
-          puts "remote: #{remote_command(title, message)}"
           ssh.exec remote_command(title, message)
         end
         
