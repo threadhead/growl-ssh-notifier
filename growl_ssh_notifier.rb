@@ -44,6 +44,7 @@ module GrowlSSHNotifier
           system "ssh #{@host} " + '"' + remote_command(title, message) + '"'
         end
       end
+      
     end
     
     

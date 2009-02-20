@@ -33,7 +33,7 @@ class TestRemoteNotifications < Test::Unit::TestCase
 
       rec.application_icon = "Mail"
       rec.send_notification('Test with Mail Icon', 'This is a test message sent with GrowlSSHNotifier.')
-     end
-   end
+    end
+  end
 
 end
