@@ -35,17 +35,9 @@ module GrowlSSHNotifier
         if ip_local?
           system remote_command(title, message)
         else
-          system ssh_no_password + '"' +remote_command(title, message) + '"'
+          system "ssh #{@host} " + '"' + remote_command(title, message) + '"'
         end
       end
-    end
-    
-    def ssh_no_password
-      "ssh #{@host} "
-    end
-    
-    def remote_ssh
-      require 'net/ssh'
     end
     
     
