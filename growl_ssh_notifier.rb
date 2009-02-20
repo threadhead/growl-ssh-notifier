@@ -8,6 +8,7 @@ class GrowlSSHNotifierError < StandardError; end
 module GrowlSSHNotifier
   class Receiver
     attr_accessor :growlnotify_path, :application_icon, :icon_type, :icon_file_path, :image_file_path
+    attr_accessor :ssh_timeout
     attr_reader :host, :user, :password
     
     def initialize(host, user=nil, password=nil)
@@ -19,6 +20,7 @@ module GrowlSSHNotifier
       @icon_type = nil
       @icon_file_path = nil
       @image_file_path = nil
+      @ssh_timeout = 2
       raise GrowlSSHNotifierError, 'must supply an ip address' if host.nil? || host.empty?
     end
     
@@ -31,7 +33,7 @@ module GrowlSSHNotifier
     def send_notification(title, message)
       if self.with_password?
         require 'net/ssh'
-        Net::SSH.start(@host, @user, :password => @password) do |ssh|
+        Net::SSH.start(@host, @user, :password => @password, :timeout => @ssh_timeout) do |ssh|
           ssh.exec remote_command(title, message)
         end
         
