@@ -31,7 +31,7 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
   
   def test_remote_command
     @rec.growlnotify_path = 'growlnotify'
-    assert_equal("\"growlnotify -t 'test_title' -m 'test_message'\"", 
+    assert_equal("growlnotify -t 'test_title' -m 'test_message'", 
                   @rec.remote_command('test_title', 'test_message'))
   end
 
@@ -39,7 +39,7 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
   def test_remote_command_with_application_icon
     @rec.growlnotify_path = 'growlnotify'
     @rec.application_icon = "Safari"
-    assert_equal("\"growlnotify -t 'test_title' -m 'test_message' -a 'Safari'\"",
+    assert_equal("growlnotify -t 'test_title' -m 'test_message' -a 'Safari'",
                   @rec.remote_command('test_title', 'test_message'))
   end
   

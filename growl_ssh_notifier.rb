@@ -30,14 +30,13 @@ module GrowlSSHNotifier
         Net::SSH.start(@host, @user, :password => @password) do |ssh|
           puts "remote: #{remote_command(title, message)}"
           ssh.exec remote_command(title, message)
-          # ssh.exec "/usr/local/bin/growlnotify -t \'test\' -m \'message\'"
         end
         
       else
         if ip_local?
           system remote_command(title, message)
         else
-          system ssh_no_password + remote_command(title, message)
+          system ssh_no_password + '"' +remote_command(title, message) + '"'
         end
       end
     end
@@ -52,14 +51,13 @@ module GrowlSSHNotifier
     
     
     def remote_command(title, message)
-      cmd = '"' + @growlnotify_path
+      cmd = @growlnotify_path
       cmd << title_arg(title)
       cmd << message_arg(message)
       cmd << application_icon_arg
       cmd << icon_type_arg
       cmd << icon_file_path_arg
       cmd << image_file_path_arg
-      cmd << '"'
     end
     
     
