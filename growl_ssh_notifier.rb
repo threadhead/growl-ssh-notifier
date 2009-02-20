@@ -52,10 +52,6 @@ module GrowlSSHNotifier
     end
     
     
-    def local_command(title, message)
-      
-    end
-    
     def ip_local?
       @host == 'localhost' || @host == '127.0.0.1'
     end
