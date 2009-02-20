@@ -42,15 +42,19 @@ module GrowlSSHNotifier
     
     
     def remote_command(title, message)
-      cmd = @growlnotify_path
-      cmd << title_arg(title)
-      cmd << message_arg(message)
-      cmd << application_icon_arg
-      cmd << icon_type_arg
-      cmd << icon_file_path_arg
-      cmd << image_file_path_arg
+      @growlnotify_path <<
+      title_arg(title) <<
+      message_arg(message) <<
+      application_icon_arg <<
+      icon_type_arg <<
+      icon_file_path_arg <<
+      image_file_path_arg
     end
     
+    
+    def local_command(title, message)
+      
+    end
     
     def ip_local?
       @host == 'localhost' || @host == '127.0.0.1'

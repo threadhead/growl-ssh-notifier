@@ -1,23 +1,10 @@
 require 'test/test_helper'
 
-class TestGrowlSSHNotifier < Test::Unit::TestCase
-  def setup
-    @rec = GrowlSSHNotifier::Receiver.new('192.168.0.3')
+class TestRemoteNotifications < Test::Unit::TestCase
+ 
+  def test_true
+    assert true
   end
-  
-  
-  # def test_remote_command_on_local_machine
-  #   rec = GrowlSSHNotifier::Receiver.new("localhost")
-  #   # rec.send_notification('Test Message', 'This is a test message sent to the local machine with GrowlSSHNotifier.')
-  # end
-  # 
-  # 
-  # def test_remote_command_on_local_machine
-  #    rec = GrowlSSHNotifier::Receiver.new("localhost")
-  #   # rec.send_notification('Test Message', 'This is a test message sent to the local machine with GrowlSSHNotifier.')
-  # end
-  # 
-  # 
   # def test_remote_command_on_remote
   #   @rec.send_notification('Test Title', 'This is a test message sent with GrowlSSHNotifier.')
   #   @rec.application_icon = "Mail"

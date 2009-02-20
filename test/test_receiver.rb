@@ -24,11 +24,6 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
   end
   
   
-  def test_local_ssh
-    assert_equal('ssh 192.168.0.3 ', @rec.ssh_no_password)
-  end
-  
-  
   def test_remote_command
     @rec.growlnotify_path = 'growlnotify'
     assert_equal("growlnotify -t 'test_title' -m 'test_message'", 
