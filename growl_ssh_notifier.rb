@@ -39,11 +39,9 @@ module GrowlSSHNotifier
         
       else
         if ip_local?
-          # result = system remote_command(title, message)
           result = `#{remote_command(title, message)}`
         else
-          # result = system "ssh #{@host} " + '"' + remote_command(title, message) + '"'
-          result = `ssh #{@host} \"#{remote_command(title, message)} \"`
+          result = `ssh #{@host} \"#{remote_command(title, message)}\"`
         end
       end
       
