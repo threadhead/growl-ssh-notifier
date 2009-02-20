@@ -1,10 +1,19 @@
 require 'test/test_helper'
+require 'yaml'
 
 class TestRemoteNotifications < Test::Unit::TestCase
  
+  def setup
+    # load the hosts from the yaml file: remote_hosts.yaml
+    
+  end
+  
   def test_true
     assert true
   end
+  
+  
+  
   # def test_remote_command_on_remote
   #   @rec.send_notification('Test Title', 'This is a test message sent with GrowlSSHNotifier.')
   #   @rec.application_icon = "Mail"

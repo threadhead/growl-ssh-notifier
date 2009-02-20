@@ -1,0 +1,11 @@
+# this host MUST have no password public key access
+# can you 'ssh <host>' without a password?
+my_desktop:
+    host:       192.168.0.3
+
+# this host will be accessed using a <user> and <password>
+# can you 'ssh <user>@<host>' and enter the password?
+my_laptop:
+    host:       192.168.0.14
+    user:       username
+    password:   sekrit
