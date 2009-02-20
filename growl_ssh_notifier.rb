@@ -83,27 +83,5 @@ module GrowlSSHNotifier
       @image_file_path ? " --image \'#{@image_file_path}\'" : ''
     end
   end
-  
-  
-  
-  # class Base
-  #    def initialize
-  #      @receivers = []
-  #    end
-  # 
-  # 
-  #    def send_notifications(title, message)
-  #      @receivers.each do |receiver|
-  # 
-  #      end
-  #    end
-  # 
-  #    def add_receiver(host, user=nil, password=nil)
-  #      rec = Receiver.new(host, user, password)
-  #      @receivers << rec
-  #      rec
-  #    end
-  #  end
-
 
 end

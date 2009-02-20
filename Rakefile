@@ -13,3 +13,9 @@ Rake::TestTask.new do |t|
   t.test_files = test_files
   t.verbose = true
 end
+
+namespace :test do
+  
+  desc 'Test growl messages sent to localhost'
+  
+end
