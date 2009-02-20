@@ -15,6 +15,10 @@ module GrowlSSHNotifier
       @host = host
       @user = user
       @password = password
+      @application_icon = nil
+      @icon_type = nil
+      @icon_file_path = nil
+      @image_file_path = nil
       raise GrowlSSHNotifierError, 'must supply an ip address' if host.nil? || host.empty?
     end
     

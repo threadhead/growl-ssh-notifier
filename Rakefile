@@ -17,5 +17,9 @@ end
 namespace :test do
   
   desc 'Test growl messages sent to localhost'
-  
+  Rake::TestTask.new(:local_notification) do |t|
+    t.test_files = FileList['test/local_notifications/test_*.rb']
+    t.verbose = true
+    t.warning = true
+  end
 end
