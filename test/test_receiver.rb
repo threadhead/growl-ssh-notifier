@@ -38,5 +38,11 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
                   @rec.remote_command('test_title', 'test_message'))
   end
   
+  
+  def test_ping_localhost
+    rec = GrowlSSHNotifier::Receiver.new('127.0.0.1')
+    rec.ping_first = true
+    assert rec.ping_host
+  end
 
 end
