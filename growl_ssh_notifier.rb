@@ -15,8 +15,8 @@ module GrowlSSHNotifier
     def initialize(host, options={})
       @growlnotify_path = options[:growlnotify_path] || '/usr/local/bin/growlnotify'
       @host = host
-      @user = options[:user] || user
-      @password = options[:password] || password
+      @user = options[:user] || nil
+      @password = options[:password] || nil
       @application_icon = options[:application_icon] || nil
       @icon_type = options[:icon_type] || nil
       @icon_file_path = options[:icon_file_path] || nil
