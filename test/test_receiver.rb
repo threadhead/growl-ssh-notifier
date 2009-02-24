@@ -19,7 +19,8 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
   
   
   def test_new_receiver_with_password
-    rec = GrowlSSHNotifier::Receiver.new("192.168.0.2", 'frank', 'sekrit')
+    rec = GrowlSSHNotifier::Receiver.new("192.168.0.2", 
+    { :user => 'frank', :password => 'sekrit'})
     assert_equal(true, rec.with_password?)
   end
   

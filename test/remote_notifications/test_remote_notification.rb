@@ -13,7 +13,8 @@ class TestRemoteNotification < Test::Unit::TestCase
         YAML.each_document( yf ) do |ydoc|
           ydoc.each do |rec|
             if rec[1].has_key?('user')
-              @receivers << GrowlSSHNotifier::Receiver.new(rec[1]['host'], rec[1]['user'], rec[1]['password'])
+              @receivers << GrowlSSHNotifier::Receiver.new(rec[1]['host'], 
+              { :user => rec[1]['user'], :password => rec[1]['password']})
             else
               @receivers << GrowlSSHNotifier::Receiver.new(rec[1]['host']) 
             end

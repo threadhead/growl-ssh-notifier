@@ -12,17 +12,17 @@ module GrowlSSHNotifier
     attr_accessor :ssh_timeout, :ping_first
     attr_reader :host, :user, :password
     
-    def initialize(host, user=nil, password=nil)
-      @growlnotify_path = '/usr/local/bin/growlnotify'
+    def initialize(host, options={})
+      @growlnotify_path = options[:growlnotify_path] || '/usr/local/bin/growlnotify'
       @host = host
-      @user = user
-      @password = password
-      @application_icon = nil
-      @icon_type = nil
-      @icon_file_path = nil
-      @image_file_path = nil
-      @ssh_timeout = 2
-      @ping_first = false
+      @user = options[:user] || user
+      @password = options[:password] || password
+      @application_icon = options[:application_icon] || nil
+      @icon_type = options[:icon_type] || nil
+      @icon_file_path = options[:icon_file_path] || nil
+      @image_file_path = options[:image_file_path] || nil
+      @ssh_timeout = options[:ssh_timeout] || 2
+      @ping_first = options[:ping_first] || false
       raise GrowlSSHNotifierError, 'must supply an ip address' if host.nil? || host.empty?
     end
     
