@@ -33,19 +33,20 @@ module GrowlSSHNotifier
     
     
     def send_notification(title, message)
-      ping_host if @ping_first
+      if ping_host
       
-      if self.with_password?
-        require 'net/ssh'
-        Net::SSH.start(@host, @user, :password => @password, :timeout => @ssh_timeout) do |ssh|
-          result = ssh.exec! remote_command(title, message)
-        end
+        if self.with_password?
+          require 'net/ssh'
+          Net::SSH.start(@host, @user, :password => @password, :timeout => @ssh_timeout) do |ssh|
+            result = ssh.exec! remote_command(title, message)
+          end
         
-      else
-        if ip_local?
-          result = `#{remote_command(title, message)}`
         else
-          result = `ssh #{@host} \"#{remote_command(title, message)}\"`
+          if ip_local?
+            result = `#{remote_command(title, message)}`
+          else
+            result = `ssh #{@host} \"#{remote_command(title, message)}\"`
+          end
         end
       end
       
@@ -69,7 +70,11 @@ module GrowlSSHNotifier
     
     
     def ping_host
-      Ping.pingecho @host, 2
+      if @ping_first
+        Ping.pingecho @host, 2
+      else
+        return true
+      end
     end
     
     
