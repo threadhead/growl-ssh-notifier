@@ -42,19 +42,19 @@ Then add the following to your code:
 
 You can execute the basic library test with a simple <tt>rake test</tt> from the growl-ssh-notifier directory.
 
-There are options tests that will send growl notifications to either the localhost computer or remote computers.
+There are optional tests that will send growl notifications to either the localhost computer or remote computers.
 
-The installation process creates a configuration file
-(<tt>queues.cfg</tt>) located in the same directory as the library.
-You can specify a different location for the configuration file using
-the option <tt>-c</tt> of <tt>--config</tt>.
+==== Localhost Notifications
 
-When you use the queue manager, it looks for a specified configuration
-file, or if no configuration file is specified it looks for the
-<tt>queues.cfg</tt> file, first in the local directory and then in the
-installation directory. If no file exists, it will create a default one
-to use the disk-based message store.
+Send test notifications to the localhost machine.
 
+  rake test:local_notification
+
+==== Remote Notifications
+
+You must duplicate and edit the <tt>test/remote_notifications/remote_hosts_example.yml</tt> file to <tt>remote_hosts.yml</tt> and edit the YAML file for valid hosts. Then you can test sending notifications to remote hosts.
+
+ rake test:remote_notification
 
 
 == Simple Example
