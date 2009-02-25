@@ -1,0 +1,74 @@
+= GrowlSSHNotifier for Ruby
+
+This library provides the ability to send {growl notifications}[http://growl.info/] to local or remote computers using ssh.
+
+This release provides the following features:
+
+* Simple API.
+
+* Smartly selects ssh method to minimize time.
+
+* Allows the use of custom icons or images.
+
+
+== Download
+
+The latest version of GrowlSSHNotifier can be found at
+
+* http://github.com/threadhead/growl-ssh-notifier/tree
+
+
+== Requirements
+
+* net-ssh (version >= 2.0), if sending notifications to remote hosts that do not have rsa/dsa authentication
+
+== Installation
+
+Download the sources directly and copy the growl-ssh-notifier directory into the lib directory (or directory of your choice) of your project. Add the following to your code:
+
+  require 'lib/growl_ssh_notifier'
+
+You can also clone the repository into your lib directory
+
+  git clone git://github.com/threadhead/growl-ssh-notifier.git lib/growl-ssh-notifier
+
+Then add the following to your code:
+
+  require 'lib/growl_ssh_notifier'
+
+
+
+=== Testing
+
+You can execute the basic library test with a simple <tt>rake test</tt> from the growl-ssh-notifier directory.
+
+There are options tests that will send growl notifications to either the localhost computer or remote computers.
+
+The installation process creates a configuration file
+(<tt>queues.cfg</tt>) located in the same directory as the library.
+You can specify a different location for the configuration file using
+the option <tt>-c</tt> of <tt>--config</tt>.
+
+When you use the queue manager, it looks for a specified configuration
+file, or if no configuration file is specified it looks for the
+<tt>queues.cfg</tt> file, first in the local directory and then in the
+installation directory. If no file exists, it will create a default one
+to use the disk-based message store.
+
+
+
+== Simple Example
+
+  require 'growl_ssh_notifier'
+
+  rec = GrowlSSHNotifier::Receiver.new("localhost")
+  rec.send_notification('Test Message', 'This is a test message sent to the LOCALHOST machine with GrowlSSHNotifier.')
+
+
+== License
+
+This package is licensed under the MIT license and/or the {Creative
+Commons Attribution-ShareAlike}[http://creativecommons.org/licenses/by-sa/2.5/legalcode].
+
+:include: MIT-LICENSE
+
