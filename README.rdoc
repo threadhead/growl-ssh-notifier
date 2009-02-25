@@ -22,6 +22,7 @@ The latest version of GrowlSSHNotifier can be found at
 
 * net-ssh (version >= 2.0), if sending notifications to remote hosts that do not have rsa/dsa authentication
 
+
 == Installation
 
 Download the sources directly and copy the growl-ssh-notifier directory into the lib directory (or directory of your choice) of your project. Add the following to your code:
@@ -52,7 +53,7 @@ Send test notifications to the localhost machine.
 
 === Remote Notifications
 
-You must duplicate and edit the <tt>test/remote_notifications/remote_hosts_example.yml</tt> file to <tt>remote_hosts.yml</tt> and edit the YAML file for valid hosts. Then you can test sending notifications to remote hosts.
+You must duplicate the <tt>test/remote_notifications/remote_hosts_example.yml</tt> file to <tt>remote_hosts.yml</tt> and edit the YAML file to enter valid hosts. Then you can test sending notifications to remote hosts.
 
  rake test:remote_notification
 
