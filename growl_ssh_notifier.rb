@@ -12,9 +12,19 @@ module GrowlSSHNotifier
     attr_accessor :ssh_timeout, :ping_first
     attr_reader :host, :user, :password
     
+    VALID_OPTIONS = [:user, :password, :growlnotify_path, :application_icon, :icon_type, :icon_file_path, :image_file_path, :ssh_timeout, :ping_first]
+    
+    
     def initialize(host, options={})
-      @growlnotify_path = options[:growlnotify_path] || '/usr/local/bin/growlnotify'
+      raise GrowlSSHNotifierError, 'must supply an ip address' if host.nil? || host.empty?
       @host = host
+      
+      options.each do |name, value|
+          raise ArgumentError, "invalid option '#{name}'" unless VALID_OPTIONS.include?(name)
+          # instance_variable_set "@#{name.to_s}".to_sym, value
+      end
+      
+      @growlnotify_path = options[:growlnotify_path] || '/usr/local/bin/growlnotify'
       @user = options[:user] || nil
       @password = options[:password] || nil
       @application_icon = options[:application_icon] || nil
@@ -23,7 +33,6 @@ module GrowlSSHNotifier
       @image_file_path = options[:image_file_path] || nil
       @ssh_timeout = options[:ssh_timeout] || 2
       @ping_first = options[:ping_first] || false
-      raise GrowlSSHNotifierError, 'must supply an ip address' if host.nil? || host.empty?
     end
     
     

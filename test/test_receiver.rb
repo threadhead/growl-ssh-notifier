@@ -13,6 +13,11 @@ class TestGrowlSSHNotifier < Test::Unit::TestCase
   end
   
   
+  def test_invalid_option
+    assert_raise(ArgumentError) { GrowlSSHNotifier::Receiver.new('192.168.0.3', { :invalid_option => 'something'}) }
+  end
+  
+  
   def test_create_new_receiver_without_ip_address_fails
     assert_raise(GrowlSSHNotifierError) { GrowlSSHNotifier::Receiver.new("") }
   end
