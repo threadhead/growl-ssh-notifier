@@ -6,7 +6,7 @@ class TestLocalNotification < Test::Unit::TestCase
     rec = GrowlSSHNotifier::Receiver.new("localhost")
     rec.send_notification('Test Message', 'This is a test message sent to the LOCALHOST machine with GrowlSSHNotifier.')
     
-    rec.application_icon = 'Mail'
+    rec = GrowlSSHNotifier::Receiver.new("localhost", { :application_icon => 'Mail' })
     rec.send_notification('Test Message', 'This is a test message sent to the LOCALHOST machine with GrowlSSHNotifier.')
   end
 

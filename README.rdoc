@@ -38,31 +38,41 @@ Then add the following to your code:
 
 
 
-=== Testing
+== Testing
 
 You can execute the basic library test with a simple <tt>rake test</tt> from the growl-ssh-notifier directory.
 
 There are optional tests that will send growl notifications to either the localhost computer or remote computers.
 
-==== Localhost Notifications
+=== Localhost Notifications
 
 Send test notifications to the localhost machine.
 
   rake test:local_notification
 
-==== Remote Notifications
+=== Remote Notifications
 
 You must duplicate and edit the <tt>test/remote_notifications/remote_hosts_example.yml</tt> file to <tt>remote_hosts.yml</tt> and edit the YAML file for valid hosts. Then you can test sending notifications to remote hosts.
 
  rake test:remote_notification
 
 
-== Simple Example
+== Examples
+
+=== Simple
 
   require 'growl_ssh_notifier'
 
   rec = GrowlSSHNotifier::Receiver.new("localhost")
   rec.send_notification('Test Message', 'This is a test message sent to the LOCALHOST machine with GrowlSSHNotifier.')
+
+=== Notification with Icon
+
+  require 'growl_ssh_notifier'
+  
+  rec = GrowlSSHNotifier::Receiver.new("localhost", { :application_icon => 'Mail' })
+  rec.send_notification('Test Message', 'This is a test message sent to the LOCALHOST machine with GrowlSSHNotifier.')
+
 
 
 == License
@@ -70,5 +80,4 @@ You must duplicate and edit the <tt>test/remote_notifications/remote_hosts_examp
 This package is licensed under the MIT license and/or the {Creative
 Commons Attribution-ShareAlike}[http://creativecommons.org/licenses/by-sa/2.5/legalcode].
 
-:include: MIT-LICENSE
 
