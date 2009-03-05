@@ -63,12 +63,12 @@ module GrowlSSHNotifier
     
     
     def remote_command(title, message)
-      @growlnotify_path <<
-      title_arg(title) <<
-      message_arg(message) <<
-      application_icon_arg <<
-      icon_type_arg <<
-      icon_file_path_arg <<
+      @growlnotify_path +
+      title_arg(title) +
+      message_arg(message) +
+      application_icon_arg +
+      icon_type_arg +
+      icon_file_path_arg +
       image_file_path_arg
     end
     
