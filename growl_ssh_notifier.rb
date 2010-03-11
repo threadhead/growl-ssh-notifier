@@ -1,5 +1,8 @@
 require 'rubygems'
-require 'ping'
+require 'timeout'
+require 'socket'
+require 'net/ssh'
+
 # this module will execute growlnotify on remote Mac computers using ssh
 # the reason is that the ruby-growl gem does not support custom icons, plus
 # when it fails it has closed serial ports (reason unknown)
@@ -45,7 +48,6 @@ module GrowlSSHNotifier
       if ping_host
       
         if self.with_password?
-          require 'net/ssh'
           Net::SSH.start(@host, @user, :password => @password, :timeout => @ssh_timeout) do |ssh|
             result = ssh.exec! remote_command(title, message)
           end
@@ -80,7 +82,7 @@ module GrowlSSHNotifier
     
     def ping_host
       if @ping_first
-        Ping.pingecho @host, 2
+        pingecho( @host, 2 )
       else
         return true
       end
@@ -112,6 +114,20 @@ module GrowlSSHNotifier
     def image_file_path_arg
       @image_file_path ? " --image \'#{@image_file_path}\'" : ''
     end
+    
+    def pingecho(host, timeout=5, service="echo")
+     begin
+       timeout(timeout) do
+         s = TCPSocket.new(host, service)
+         s.close
+       end
+     rescue Errno::ECONNREFUSED
+       return true
+     rescue Timeout::Error, StandardError
+       return false
+     end
+     return true
+   end
   end
 
 end
