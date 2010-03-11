@@ -116,18 +116,18 @@ module GrowlSSHNotifier
     end
     
     def pingecho(host, timeout=5, service="echo")
-     begin
+      begin
        timeout(timeout) do
          s = TCPSocket.new(host, service)
          s.close
        end
-     rescue Errno::ECONNREFUSED
+      rescue Errno::ECONNREFUSED
        return true
-     rescue Timeout::Error, StandardError
+      rescue Timeout::Error, StandardError
        return false
-     end
-     return true
-   end
+      end
+      return true
+    end
   end
 
 end
